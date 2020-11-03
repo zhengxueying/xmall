@@ -1,0 +1,37 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: redis-pvc
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: kube-storage
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: es-pvc
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: kube-storage
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: amq-pvc
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: kube-storage
