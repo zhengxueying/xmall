@@ -2,5 +2,5 @@ spec:
   destination:
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://git.netisdev.com/scm/~sherry.zheng/xmall.git
-    targetRevision: HEAD
+    repoURL: https://github.com/zhengxueying/xmall.git
+    targetRevision: master
