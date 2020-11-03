@@ -1,8 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: redis
-  namespace: default
+  name: elasticsearch
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -11,6 +11,6 @@ spec:
     server: {{ .Values.spec.destination.server }}
   project: default
   source:
-    path: xmall-plungin/4_redis-helm
+    path: xmall-plungin/3_elasticsearch-helm
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
