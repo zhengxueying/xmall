@@ -22,6 +22,8 @@ spec:
       volumes:
         - name: app-volume
           emptyDir: {}
+        - name: agent-volume
+          emptyDir: {}
       initContainers:
         - name: war
           image: {{ .Values.image.webarchive.repository }}:{{ .Values.image.webarchive.tag }}
@@ -33,6 +35,16 @@ spec:
           volumeMounts:
             - name: app-volume
               mountPath: /app
+        - name: swagent
+          image: {{ .Values.image.swagent.repository }}:{{ .Values.image.swagent.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - "sh"
+            - "-c"
+            - "mkdir -p /skywalking/agent && cp -r /usr/skywalking/agent/* /skywalking/agent"
+          volumeMounts:
+            - name: agent-volume
+              mountPath: {{ .Values.swagent.mount }}
       containers:
         - name: {{ .Values.sidecar.name }}
           image: {{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag }}
@@ -43,9 +55,18 @@ spec:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.tomcat.repository }}:{{ .Values.image.tomcat.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+           - name: JAVA_OPTS
+             value: {{ .Values.swagent.opts }}
+           - name: SW_AGENT_NAME
+             value: {{ .Values.swagent.name }}
+           - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
+             value: {{ .Values.swagent.oapserver }} 
           volumeMounts:
             - name: app-volume
               mountPath: {{ .Values.deploy.directory }}
+            - name: agent-volume
+              mountPath: {{ .Values.swagent.mount }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
               #hostPort: 8009

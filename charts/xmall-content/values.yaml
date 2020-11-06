@@ -17,8 +17,17 @@ image:
   tomcat:
     repository: tomcat
     tag: "8.5-jdk8-slim"
+  swagent:
+    repository: registry.cn-shanghai.aliyuncs.com/netis/sw-agent
+    tag: "8.0.1"
   pullPolicy: IfNotPresent
   pullSecrets: []
+
+swagent:
+  name: content-agent
+  oapserver: skywalking-oap:11800
+  opts: "-javaagent:/skywalking/agent/skywalking-agent.jar"
+  mount: /skywalking/agent
 
 deploy:
   directory: /usr/local/tomcat/webapps
