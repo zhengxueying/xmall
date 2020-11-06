@@ -1,0 +1,105 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-xmall-conf
+data:
+  default.conf: |
+    server {
+      listen       80;
+      server_name  _;
+
+      location /member/ {
+        proxy_pass http://xmall-front-web;
+      }
+
+      location /goods/ {
+        proxy_pass http://xmall-front-web;
+      }
+
+      location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+      }
+
+      error_page   500 502 503 504  /50x.html;
+      location = /50x.html {
+        root   /usr/share/nginx/html;
+      }
+    }
+
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-xmall
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-xmall
+    spec:
+      initContainers:
+      - name: web
+        image: docker.io/s1240zsw/xmall-web
+        command:
+        - "sh"
+        - "-c"
+        - "cp -R /dist/* /app"
+        volumeMounts:
+        - name: app-volume
+          mountPath: /app
+      containers:
+      - name: nginx
+        image: docker.io/nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d # mount nginx-conf volumn to /etc/nginx
+          readOnly: true
+          name: nginx-xmall-conf
+        - mountPath: /var/log/nginx
+          name: log
+        - mountPath: /usr/share/nginx/html
+          name: app-volume
+      volumes:
+      - name: nginx-xmall-conf
+        configMap:
+          name: nginx-xmall-conf # place ConfigMap `nginx-conf` on /etc/nginx
+          items:
+            - key: default.conf
+              path: default.conf
+      - name: log
+        emptyDir: {}
+      - name: app-volume
+        emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-xmall
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: nginx-xmall
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-xmall
+  annotations:
+    ingress.kubernetes.io/proxy-body-size: "0"
+    ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  rules:
+  - host: xmall.netis.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx-xmall
+          servicePort: 80
