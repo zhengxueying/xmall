@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: skywalking
+    component: ui
+  name: skywalking-ui
+  namespace: default
+spec:
+  ports:
+  - port: 8088
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: skywalking
+    component: ui
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  labels:
+    app: skywalking
+    component: ui
+  name: skywalking-ui
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: skywalking
+      component: ui
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: skywalking
+        component: ui
+    spec:
+      containers:
+      - env:
+        - name: SW_OAP_ADDRESS
+          value: skywalking-oap:12800
+        image: registry-vpc.cn-shanghai.aliyuncs.com/netis/skywalking-ui:8.1.0
+        imagePullPolicy: IfNotPresent
+        name: ui
+        ports:
+        - name: page
+          containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
