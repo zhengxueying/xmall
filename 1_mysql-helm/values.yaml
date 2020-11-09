@@ -1,7 +1,7 @@
 ## mysql image version
 ## ref: https://hub.docker.com/r/library/mysql/tags/
 ##
-image: "k8s-harbor.netisdev.com/mall/mysqlutf8"
+image: "registry.cn-shanghai.aliyuncs.com/netis/mysql"
 imageTag: "5.7.14"
 
 busybox:
