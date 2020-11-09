@@ -94,6 +94,10 @@ spec:
         - name: TZ
           value: {{ .Values.timezone }}
         {{- end }}
+        command:
+        - sh
+        - -c
+        - "mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
         ports:
         - name: mysql
           containerPort: 3306
