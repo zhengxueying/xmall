@@ -6,7 +6,7 @@ replicaCount: 1
 sidecar:
   name: monitor
   image:
-    repository: k8s-harbor.netisdev.com/mall/centos-packet-agent
+    repository:  registry.cn-shanghai.aliyuncs.com/netis/packet-agent
     tag: 0.3.7
   command: [ "/usr/local/bin/pktminerg", "-i", "eth0", "-r", "172.18.0.208", "-z", "82" ]
 
