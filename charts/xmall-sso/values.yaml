@@ -8,7 +8,7 @@ sidecar:
   image:
     repository: docker.io/s1240zsw/centos-packet-agent
     tag: v1
-  command: [ "/usr/local/bin/pktminerg", "-i", "eth0", "-r", "172.18.0.208" ]
+  command: [ "/usr/local/bin/pktminerg", "-i", "eth0", "-r", "172.18.0.208", "-z", "82" ]
 
 image:
   webarchive:
