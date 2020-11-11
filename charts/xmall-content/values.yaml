@@ -6,9 +6,9 @@ replicaCount: 1
 sidecar:
   name: monitor
   image:
-    repository: docker.io/s1240zsw/centos-packet-agent
-    tag: v1
-  command: [ "/usr/local/bin/pktminerg", "-i", "eth0", "-r", "10.1.6.25" ]
+    repository: registry.cn-shanghai.aliyuncs.com/netis/packet-agent
+    tag: 0.3.7
+  command: [ "/usr/local/bin/pktminerg", "-i", "eth0", "-r", "172.18.0.211", "-z", "82" ]
 
 image:
   webarchive:

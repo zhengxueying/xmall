@@ -8,7 +8,7 @@ sidecar:
   image:
     repository:  registry.cn-shanghai.aliyuncs.com/netis/packet-agent
     tag: 0.3.7
-  command: [ "/usr/local/bin/pktminerg", "-i", "eth0", "-r", "172.18.0.208", "-z", "82" ]
+  command: [ "/usr/local/bin/pktminerg", "-i", "eth0", "-r", "172.18.0.211", "-z", "82" ]
 
 image:
   webarchive:
