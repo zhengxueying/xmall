@@ -139,7 +139,7 @@ headless:
 external:
   enabled: true
   # type can be either NodePort or LoadBalancer
-  type: NodePort
+  type: LoadBalancer
   # annotations:
   #  service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
   # Labels to be added to external services
