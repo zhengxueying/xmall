@@ -147,7 +147,7 @@ external:
   #  aLabel: "value"
   dns:
     useInternal: false
-    useExternal: true
+    useExternal: false
   # If using external service type LoadBalancer and external dns, set distinct to true below.
   # This creates an A record for each statefulset pod/broker. You should then map the
   # A record of the broker to the EXTERNAL IP given by the LoadBalancer in your DNS server.
@@ -179,7 +179,7 @@ podDisruptionBudget: {}
 ##
 configurationOverrides:
   "confluent.support.metrics.enable": false  # Disables confluent metric submission
-  "auto.leader.rebalance.enable": true
+  # "auto.leader.rebalance.enable": true
   "allow.everyone.if.no.acl.found": true
   # "auto.create.topics.enable": true
   # "controlled.shutdown.enable": true
