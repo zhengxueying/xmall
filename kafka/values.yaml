@@ -147,7 +147,7 @@ external:
   #  aLabel: "value"
   dns:
     useInternal: false
-    useExternal: false
+    useExternal: true
   # If using external service type LoadBalancer and external dns, set distinct to true below.
   # This creates an A record for each statefulset pod/broker. You should then map the
   # A record of the broker to the EXTERNAL IP given by the LoadBalancer in your DNS server.
@@ -204,7 +204,7 @@ configurationOverrides:
   ## Uncomment to define the EXTERNAL Listener protocol
   "listener.security.protocol.map": |-
      PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
-  # "listeners": PLAINTEXT://:9092,EXTERNAL://47.103.84.40:31090
+  "listeners": PLAINTEXT://:9092,EXTERNAL://:31090
   # "inter.broker.listener.name": "PLAINTEXT"
 
 ## set extra ENVs
