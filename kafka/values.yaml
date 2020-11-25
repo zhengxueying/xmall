@@ -155,7 +155,7 @@ external:
   servicePort: 19092
   firstListenerPort: 31090
   domain: cluster.local
-  loadBalancerIP: []
+  loadBalancerIP: ['172.18.0.999']
   loadBalancerSourceRanges: []
   init:
     image: "lwolf/kubectl_deployer"
