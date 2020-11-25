@@ -204,7 +204,7 @@ configurationOverrides:
   ## Uncomment to define the EXTERNAL Listener protocol
   "listener.security.protocol.map": |-
      PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
-  # "listeners": PLAINTEXT://:9092,EXTERNAL://:19090
+  "listeners": PLAINTEXT://:9092,EXTERNAL://:31090
   # "inter.broker.listener.name": "PLAINTEXT"
 
 ## set extra ENVs
