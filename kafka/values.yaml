@@ -197,8 +197,8 @@ configurationOverrides:
   # "advertised.listeners": |-
     # EXTERNAL://kafka-0.cluster.local:19092
   ## If external service type is LoadBalancer and distinct is false:
+  # EXTERNAL://${LOAD_BALANCER_IP}:31090
   "advertised.listeners": |-
-    # EXTERNAL://${LOAD_BALANCER_IP}:31090
     EXTERNAL://47.103.84.40:31090
   ## Uncomment to define the EXTERNAL Listener protocol
   "listener.security.protocol.map": |-
