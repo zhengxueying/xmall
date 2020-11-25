@@ -147,11 +147,11 @@ external:
   #  aLabel: "value"
   dns:
     useInternal: false
-    useExternal: true
+    useExternal: false
   # If using external service type LoadBalancer and external dns, set distinct to true below.
   # This creates an A record for each statefulset pod/broker. You should then map the
   # A record of the broker to the EXTERNAL IP given by the LoadBalancer in your DNS server.
-  distinct: true
+  distinct: false
   servicePort: 19092
   firstListenerPort: 31090
   domain: cluster.local
@@ -179,7 +179,7 @@ podDisruptionBudget: {}
 ##
 configurationOverrides:
   "confluent.support.metrics.enable": false  # Disables confluent metric submission
-  # "auto.leader.rebalance.enable": true
+  "auto.leader.rebalance.enable": true
   # "auto.create.topics.enable": true
   # "controlled.shutdown.enable": true
   # "controlled.shutdown.max.retries": 100
@@ -194,14 +194,16 @@ configurationOverrides:
   # "advertised.listeners": |-
     #  EXTERNAL://10.1.1.222:$((31090 + ${KAFKA_BROKER_ID}))
   ## If external service type is LoadBalancer and distinct is true:
-  "advertised.listeners": |-
-    EXTERNAL://kafka-0.cluster.local:19092
-  ## If external service type is LoadBalancer and distinct is false:
   # "advertised.listeners": |-
-  #   EXTERNAL://${LOAD_BALANCER_IP}:31090
+    # EXTERNAL://kafka-0.cluster.local:19092
+  ## If external service type is LoadBalancer and distinct is false:
+  "advertised.listeners": |-
+    EXTERNAL://${LOAD_BALANCER_IP}:31090
   ## Uncomment to define the EXTERNAL Listener protocol
   "listener.security.protocol.map": |-
      PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+  "listeners": PLAINTEXT://:9092,EXTERNAL://:31090
+  "inter.broker.listener.name": "PLAINTEXT"
 
 ## set extra ENVs
 #   key: "value"
