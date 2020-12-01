@@ -45,6 +45,7 @@ spec:
       initContainers:
       - name: web
         image: registry.cn-shanghai.aliyuncs.com/netis/xmall-web:1.0.3
+        imagePullPolicy: Always
         command:
         - "sh"
         - "-c"
