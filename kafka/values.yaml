@@ -155,7 +155,7 @@ external:
   servicePort: 19092
   firstListenerPort: 31090
   domain: cluster.local
-  loadBalancerIP: ['47.103.82.40']
+  loadBalancerIP: ['139.196.115.225']
   loadBalancerSourceRanges: []
   init:
     image: "lwolf/kubectl_deployer"
@@ -200,7 +200,7 @@ configurationOverrides:
   ## If external service type is LoadBalancer and distinct is false:
   # EXTERNAL://${LOAD_BALANCER_IP}:31090
   "advertised.listeners": |-
-    EXTERNAL://47.103.82.40:31090
+    EXTERNAL://139.196.115.225:31090
   ## Uncomment to define the EXTERNAL Listener protocol
   "listener.security.protocol.map": |-
      PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
