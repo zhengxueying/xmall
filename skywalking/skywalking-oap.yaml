@@ -105,7 +105,7 @@ spec:
       - command:
         - sh
         - -c
-        - for i in $(seq 1 60); do nc -z -w3 elasticsearch-master 9200 && exit 0 ||
+        - for i in $(seq 1 60); do nc -z -w3 skywalking-elasticsearch-master 9200 && exit 0 ||
           sleep 5; done; exit 1
         image: busybox:1.30
         imagePullPolicy: IfNotPresent
