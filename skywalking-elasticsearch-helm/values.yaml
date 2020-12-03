@@ -13,7 +13,7 @@ roles:
   ingest: "true"
   data: "true"
 
-replicas: 10
+replicas: 5
 minimumMasterNodes: 0
 
 esMajorVersion: 6
