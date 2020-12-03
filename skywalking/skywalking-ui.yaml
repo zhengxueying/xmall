@@ -27,7 +27,7 @@ metadata:
   name: skywalking-ui
   namespace: default
 spec:
-  replicas: 1
+  replicas: 5
   revisionHistoryLimit: 10
   selector:
     matchLabels:
