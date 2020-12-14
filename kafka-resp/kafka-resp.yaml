@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kafka-es
+  name: kafka-resp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kafka-es
+      app: kafka-resp
   template:
     metadata:
       labels:
-        app: kafka-es
+        app: kafka-resp
     spec:
       containers:
-      - name: kafka-es
-        image: registry.cn-shanghai.aliyuncs.com/netis/kafka-es:1.0.0
+      - name: kafka-resp
+        image: registry.cn-shanghai.aliyuncs.com/netis/kafka-es:1.0.1
         imagePullPolicy: Always
         ports:
         - containerPort: 1234
@@ -23,12 +23,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: kafka-es
+  name: kafka-resp
 spec:
   type: ClusterIP
   ports:
   - port: 1234
     targetPort: 1234
   selector:
-    app: kafka-es
-
+    app: kafka-resp
