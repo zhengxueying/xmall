@@ -1,7 +1,8 @@
 # Default values for the chart.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-replicaCount: 20
+# replicaCount: 20
+replicaCount: 1
 
 sidecar:
   name: monitor
