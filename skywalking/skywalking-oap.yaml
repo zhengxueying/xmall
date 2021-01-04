@@ -76,7 +76,7 @@ spec:
         - name: SW_STORAGE
           value: elasticsearch
         - name: SW_STORAGE_ES_CLUSTER_NODES
-          value: elasticsearch-master:9200
+          value: skywalking-elasticsearch-master:9200
         image: registry.cn-shanghai.aliyuncs.com/netis/skywalking-oap:8.1.0
         imagePullPolicy: IfNotPresent
         livenessProbe:
