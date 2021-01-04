@@ -56,7 +56,7 @@ metadata:
   namespace: default
 spec:
   podManagementPolicy: Parallel
-  replicas: 1
+  replicas: 4
   revisionHistoryLimit: 10
   selector:
     matchLabels:
