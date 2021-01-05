@@ -118,10 +118,10 @@ spec:
         backend:
           serviceName: nginx-xmall
           servicePort: 80
-  - host: xmall-skywalking.netis.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: skywalking-ui
-          servicePort: 8088
+  # - host: xmall-skywalking.netis.com
+  #   http:
+  #     paths:
+  #     - path: /
+  #       backend:
+  #         serviceName: skywalking-ui
+  #         servicePort: 8088
