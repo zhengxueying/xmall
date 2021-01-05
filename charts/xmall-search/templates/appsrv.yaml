@@ -65,8 +65,8 @@ spec:
           volumeMounts:
             - name: app-volume
               mountPath: {{ .Values.deploy.directory }}
-            - name: agent-volume
-              mountPath: {{ .Values.swagent.mount }}
+            # - name: agent-volume
+            #   mountPath: {{ .Values.swagent.mount }}
           ports:
             - containerPort: {{ .Values.service.internalPort }}
               #hostPort: 8009
