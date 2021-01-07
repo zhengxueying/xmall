@@ -18,6 +18,17 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 1234
+      - name: monitor
+        image: registry.cn-shanghai.aliyuncs.com/netis/packet-agent:0.3.7
+        imagePullPolicy: IfNotPresent
+        command:
+        - "/usr/local/bin/pktminerg"
+        - "-i"
+        - "eth0"
+        - "-r"
+        - "172.18.0.211"
+        - "-z"
+        - "82"
         
 ---
 apiVersion: v1
